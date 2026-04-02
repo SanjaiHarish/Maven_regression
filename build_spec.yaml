@@ -1,0 +1,24 @@
+version: 0.1
+
+component: build
+
+shell: bash
+
+steps:
+  - type: Command
+    name: "Build without tests"
+    command: |
+      echo "Installing dependencies..."
+      mvn clean install -DskipTests=true
+
+  - type: Command
+    name: "Run Regression Tests"
+    command: |
+      echo "Running tests..."
+      mvn test
+
+  - type: Command
+    name: "Package"
+    command: |
+      echo "Packaging..."
+      mvn package
